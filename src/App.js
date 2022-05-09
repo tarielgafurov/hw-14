@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useRef, useState } from 'react';
+import styles from './Colors.module.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [time , setTime] = useState(false)
+  const container = useRef(null)
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      setTime(!time)
+    } , 1000)
+
+  } , [time])
+  return <div ref={container} className={!time ? styles.red : styles.green}></div>
 }
 
 export default App;
